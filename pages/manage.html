@@ -163,6 +163,20 @@
 			<button class="prompt__button">No</button>
 		</div>
 
-		<script src="../scripts/manage.js"></script>
+		<script>
+			const isDevelopment =
+				window.location.protocol === 'http:' ||
+				window.location.protocol === 'https:';
+
+			if (isDevelopment) {
+				document.write(
+					'<script type="module" src="../scripts/manage.js"><\/script>'
+				);
+			} else {
+				document.write(
+					'<script src="../scripts/bundles/manage.bundle.js"><\/script>'
+				);
+			}
+		</script>
 	</body>
 </html>
