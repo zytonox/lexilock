@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			content="width=device-width, initial-scale=1.0"
+			name="viewport"
+		/>
+		<title>LexiLock: Manage</title>
+		<style>
+			html,
+			body,
+			div,
+			span,
+			applet,
+			object,
+			iframe,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			p,
+			blockquote,
+			pre,
+			a,
+			abbr,
+			acronym,
+			address,
+			big,
+			cite,
+			code,
+			del,
+			dfn,
+			em,
+			img,
+			ins,
+			kbd,
+			q,
+			s,
+			samp,
+			small,
+			strike,
+			strong,
+			sub,
+			sup,
+			tt,
+			var,
+			b,
+			u,
+			i,
+			center,
+			dl,
+			dt,
+			dd,
+			ol,
+			ul,
+			li,
+			fieldset,
+			form,
+			label,
+			legend,
+			table,
+			caption,
+			tbody,
+			tfoot,
+			thead,
+			tr,
+			th,
+			td,
+			article,
+			aside,
+			canvas,
+			details,
+			embed,
+			figure,
+			figcaption,
+			footer,
+			header,
+			hgroup,
+			menu,
+			nav,
+			output,
+			ruby,
+			section,
+			summary,
+			time,
+			mark,
+			audio,
+			video,
+			button,
+			input {
+				margin: 0;
+				padding: 0;
+				font-size: 100%;
+				vertical-align: baseline;
+				border: 0;
+			}
+
+			article,
+			aside,
+			details,
+			figcaption,
+			figure,
+			footer,
+			header,
+			hgroup,
+			menu,
+			nav,
+			section {
+				display: block;
+			}
+
+			body {
+				line-height: 1;
+			}
+
+			ol,
+			ul {
+				list-style: none;
+			}
+
+			blockquote,
+			q {
+				quotes: none;
+			}
+
+			blockquote:before,
+			blockquote:after,
+			q:before,
+			q:after {
+				content: none;
+			}
+
+			table {
+				border-spacing: 0;
+				border-collapse: collapse;
+			}
+
+			::-webkit-scrollbar {
+				width: 10px;
+				height: 10px;
+			}
+
+			::-webkit-scrollbar-track {
+				border-radius: 5px;
+				background-color: #282a2e;
+			}
+
+			::-webkit-scrollbar-thumb {
+				border: 0.1rem solid #2e2e2e;
+				border-radius: 10px;
+				background-image: -webkit-linear-gradient(315deg, #505050 10%, #3d3d3d);
+				box-shadow: 0 5px 7px #222325;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background-image: -webkit-linear-gradient(315deg, #5e5e5e 10%, #3d3d3d);
+				box-shadow: 0 5px 14px #222325;
+			}
+
+			::-webkit-scrollbar-thumb:active {
+				background-image: -webkit-linear-gradient(315deg, #6b6b6b, #3d3d3d);
+				box-shadow: none;
+			}
+
+			::-webkit-scrollbar-corner {
+				background-color: #2e2e2e;
+			}
+
+			* {
+				box-sizing: border-box;
+				font-family: 'Segoe UI', sans-serif;
+				color: #b4b4b4;
+				outline: none;
+				user-select: none;
+			}
+
+			*::selection {
+				background: #43464d;
+			}
+
+			.page {
+				background-color: #282a2e;
+			}
+
+			.data-form {
+				padding: 20px 15px;
+				background-color: #333;
+				box-shadow: 0 3px 10px #212225;
+			}
+
+			.data-form__title {
+				margin-bottom: 15px;
+				font-size: 24px;
+				text-align: center;
+			}
+
+			.data-form__input {
+				font-size: 24px;
+				border: 2px solid #333;
+				border-radius: 5px;
+				background-color: #282a2e;
+				box-shadow: 0 2px 5px #212225;
+			}
+
+			.data-form__input:focus {
+				border: 2px solid #575a5f;
+				outline: none;
+				box-shadow: 0 1px 4px #292a2c;
+			}
+
+			.data-form__input:not(.data-form__input-context) {
+				width: 100%;
+				margin-top: 5px;
+				padding-bottom: 4px;
+			}
+
+			.data-form__input-context {
+				width: 100%;
+				height: 300px;
+				resize: none;
+			}
+
+			.data-form__container {
+				display: flex;
+				margin: 20px 0 15px;
+			}
+
+			@media screen and (max-width: 680px) {
+				.data-form__container {
+					flex-direction: column;
+				}
+			}
+
+			.data-form__button {
+				height: 30px;
+				border-radius: 5px;
+				background-color: #282a2e;
+				box-shadow: 0 2px 5px #212225;
+			}
+
+			@media (hover: hover) {
+				.data-form__button:hover {
+					background-color: #43464d;
+					box-shadow: 0 1px 4px #292a2c;
+				}
+			}
+
+			.data-form__button:active {
+				background-color: #5e6166;
+				box-shadow: none;
+			}
+
+			.data-form__button:disabled {
+				color: #636363;
+			}
+
+			.data-form__button:disabled:active {
+				background-color: #4c4e52;
+			}
+
+			.data-form__add-vocabulary,
+			.data-form__remove-vocabulary {
+				width: 30px;
+				padding-bottom: 3.8px;
+			}
+
+			.data-form__message {
+				margin: 0 auto;
+				font-size: 25px;
+				color: #607d8b;
+			}
+
+			.data-form__vocabulary-item {
+				display: grid;
+				grid-template-columns: repeat(10, 1fr) auto;
+				gap: 10px;
+				margin-bottom: 30px;
+			}
+
+			@media screen and (max-width: 680px) {
+				.data-form__vocabulary-item {
+					display: flex;
+					flex-direction: column;
+					margin-bottom: 20px;
+				}
+			}
+
+			.data-form__label {
+				font-size: 20px;
+				text-indent: 3px;
+			}
+
+			.data-form__label:nth-child(1) {
+				grid-column: 1 / 4;
+			}
+
+			.data-form__label:nth-child(2) {
+				grid-column: 4 / 6;
+			}
+
+			.data-form__label:nth-child(3) {
+				grid-column: 6 / 9;
+			}
+
+			.data-form__label:nth-child(4) {
+				grid-column: 9 / 11;
+			}
+
+			.data-form__input-type {
+				font-size: 20px;
+			}
+
+			.data-form__remove-vocabulary {
+				margin-top: 25px;
+			}
+
+			@media screen and (max-width: 680px) {
+				.data-form__remove-vocabulary {
+					margin-top: 0;
+				}
+			}
+
+			.data-form__button-container {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				padding-top: 10px;
+			}
+
+			@media screen and (max-width: 680px) {
+				.data-form__button-container {
+					padding-top: 0;
+				}
+			}
+
+			.data-form__copy-button {
+				grid-column: 2;
+				justify-self: center;
+				width: 90px;
+				height: 50px;
+			}
+
+			.data-form__clear-button {
+				grid-column: 3;
+				align-self: center;
+				justify-self: right;
+				width: 80px;
+				height: 40px;
+				margin-right: 2px;
+				font-size: 14px;
+			}
+
+			.overlay {
+				position: absolute;
+				top: 0;
+				width: 100vw;
+				height: 100vh;
+				backdrop-filter: blur(5px);
+			}
+
+			.overlay_inactive {
+				display: none;
+			}
+
+			.prompt {
+				position: absolute;
+				top: calc((100vh - 156px) / 5);
+				left: calc((100vw - 320px) / 2);
+				width: 320px;
+				padding: 30px 40px 0;
+				font-size: 24px;
+				text-align: center;
+				border: 2px solid #575a5f;
+				border-radius: 10px;
+				background-color: #333;
+				box-shadow: 0 3px 10px #212225;
+			}
+
+			.prompt_inactive {
+				display: none;
+			}
+
+			.prompt__button {
+				margin: 30px 20px;
+				padding: 5px 20px;
+				border-radius: 7px;
+				background-color: #212121;
+				box-shadow: 0 2px 5px #212225;
+			}
+
+			@media (hover: hover) {
+				.prompt__button:hover {
+					background-color: #282a2e;
+					box-shadow: 0 1px 4px #292a2c;
+				}
+			}
+
+			.prompt__button:active {
+				background-color: #48494b;
+				box-shadow: none;
+			}
+
+			.prompt__button:nth-child(2) {
+				color: #ac4747;
+			}
+		</style>
+	</head>
+	<body class="page">
+		<form class="data-form">
+			<h2 class="data-form__title">LexiLock: Manage</h2>
+
+			<textarea
+				aria-label=""
+				class="data-form__input data-form__input-context"
+				name="context-input"
+			></textarea>
+
+			<div class="data-form__container">
+				<button class="data-form__button data-form__add-vocabulary">+</button>
+
+				<p class="data-form__message"></p>
+			</div>
+
+			<fieldset class="data-form__fieldset">
+				<div class="data-form__vocabulary-item">
+					<label class="data-form__label"
+						>Original
+						<input
+							class="data-form__input data-form__input_origin"
+							name="original-input"
+							type="text"
+					/></label>
+
+					<label class="data-form__label"
+						>Transcription
+						<input
+							class="data-form__input"
+							name="original-transcription"
+							type="text"
+					/></label>
+
+					<label class="data-form__label"
+						>Translation
+						<input
+							class="data-form__input"
+							name="original-translation"
+							type="text"
+					/></label>
+
+					<label class="data-form__label"
+						>Type
+						<select
+							class="data-form__input data-form__input-type"
+							name="original-type"
+						>
+							<option
+								class="data-form__option"
+								value="word"
+							>
+								Word
+							</option>
+
+							<option
+								class="data-form__option"
+								value="collocation"
+							>
+								Collocation
+							</option>
+
+							<option
+								class="data-form__option"
+								value="idiom"
+							>
+								Idiom
+							</option>
+
+							<option
+								class="data-form__option"
+								value="phrasal"
+							>
+								Phrasal Verb
+							</option>
+						</select></label
+					>
+
+					<button
+						class="data-form__button data-form__remove-vocabulary"
+						disabled
+					>
+						-
+					</button>
+				</div>
+			</fieldset>
+
+			<div class="data-form__button-container">
+				<button
+					class="data-form__button data-form__copy-button"
+					disabled
+				>
+					Copy Context
+				</button>
+
+				<button
+					class="data-form__button data-form__clear-button"
+					disabled
+				>
+					Clear Context
+				</button>
+			</div>
+		</form>
+
+		<div class="overlay overlay_inactive"></div>
+
+		<div class="prompt prompt_inactive">
+			<p class="prompt__message">Are you sure?</p>
+
+			<button class="prompt__button">Yes</button>
+
+			<button class="prompt__button">No</button>
+		</div>
+
+		<script>
+			const title = document.querySelector('title');
+
+			const contextInput = document.querySelector('.data-form__input-context');
+
+			const additionButton = document.querySelector(
+				'.data-form__add-vocabulary'
+			);
+
+			const message = document.querySelector('.data-form__message');
+
+			const vocabularyContainer = document.querySelector(
+				'.data-form__fieldset'
+			);
+			const vocabulary = vocabularyContainer.children;
+			const vocabularyItem = document.querySelector(
+				'.data-form__vocabulary-item'
+			);
+			const removalButton = document.querySelector(
+				'.data-form__remove-vocabulary'
+			);
+
+			const copyButton = document.querySelector('.data-form__copy-button');
+			const clearanceButton = document.querySelector(
+				'.data-form__clear-button'
+			);
+
+			const prompt = document.querySelector('.prompt');
+			const confirmationButton = document.querySelector(
+				'.prompt__button:nth-child(2)'
+			);
+			const cancellationButton = document.querySelector(
+				'.prompt__button:nth-child(3)'
+			);
+
+			const overlay = document.querySelector('.overlay');
+
+			let inputs;
+
+			const checkNewData = () => {
+				const isNewData = localStorage.getItem('newDataJS');
+				clearanceButton.disabled = !isNewData;
+
+				const newDataLength = localStorage.getItem('Contexts');
+				title.innerText = !newDataLength
+					? 'Context'
+					: 'Contexts ' + `(${newDataLength})`;
+				clearanceButton.innerText =
+					newDataLength < 2 ? 'Clear Context' : 'Clear Contexts';
+			};
+
+			checkNewData();
+
+			const listenForInputs = () => {
+				inputs = document.querySelectorAll(
+					'.data-form__input:not(.data-form__input-type)'
+				);
+				inputs.forEach(input => {
+					input.addEventListener('input', () => {
+						validateInputs(inputs);
+					});
+				});
+			};
+
+			const validateInputs = inputs => {
+				const inputArray = Array.from(inputs);
+				const isEmptyInput = inputArray.find(input => !input.value.trim());
+
+				const originalInputs = document.querySelectorAll(
+					'.data-form__input_origin'
+				);
+				const originalInputArray = Array.from(originalInputs);
+				const isInvalidOriginal = originalInputArray.find(
+					originalInput =>
+						!contextInput.value.includes(originalInput.value.trim())
+				);
+
+				copyButton.disabled = !!(isEmptyInput || isInvalidOriginal);
+			};
+
+			listenForInputs();
+
+			const clearVocabularyInput = vocabularyItem => {
+				vocabularyItem.children[0].children[0].value = '';
+				vocabularyItem.children[1].children[0].value = '';
+				vocabularyItem.children[2].children[0].value = '';
+				vocabularyItem.children[3].children[0].value = 'word';
+			};
+
+			const removeButton = event => {
+				if (vocabularyContainer.childElementCount > 1) {
+					event.target.parentElement.remove();
+
+					listenForInputs();
+					validateInputs(inputs);
+				}
+
+				if (vocabularyContainer.childElementCount === 1) {
+					const firstVocabularyItem = vocabulary[0];
+					const firstVocabularyItemRemovalButton =
+						firstVocabularyItem.children[4];
+					firstVocabularyItemRemovalButton.disabled = true;
+
+					listenForInputs();
+					validateInputs(inputs);
+				}
+			};
+
+			const checkIfFirstLetterIsUpperCase = string => {
+				const upperCaseString = makeFirstLetterUpperCase(string);
+
+				return string === upperCaseString;
+			};
+
+			const makeFirstLetterUpperCase = string => {
+				return string.charAt(0).toUpperCase() + string.slice(1);
+			};
+
+			const displayMessage = () => {
+				message.innerText = 'New data has been copied to clipboard.';
+
+				setTimeout(() => {
+					message.innerText = '';
+				}, 5000);
+			};
+
+			additionButton.addEventListener('click', event => {
+				event.preventDefault();
+
+				const firstVocabularyItem = vocabulary[0];
+				const firstVocabularyItemRemovalButton =
+					firstVocabularyItem.children[4];
+				firstVocabularyItemRemovalButton.disabled = false;
+				const vocabularyTemplate = vocabularyItem.cloneNode(true);
+				clearVocabularyInput(vocabularyTemplate);
+				vocabularyContainer.append(vocabularyTemplate);
+
+				const newVocabularyItem = vocabulary[vocabulary.length - 1];
+				const newRemovalButton = newVocabularyItem.children[4];
+				newRemovalButton.addEventListener('click', removeButton);
+
+				listenForInputs();
+				validateInputs(inputs);
+			});
+
+			removalButton.addEventListener('click', removeButton);
+
+			copyButton.addEventListener('click', () => {
+				const newContext = contextInput.value.trim();
+
+				let newData = localStorage.getItem('newDataJSON');
+				newData = JSON.parse(newData);
+				if (!newData) {
+					newData = [];
+				}
+
+				newData.push({
+					context: `${newContext}`,
+					vocabulary: [],
+				});
+
+				const vocabularyItemNumber = vocabularyContainer.childElementCount;
+				for (
+					let vocabularyItem = 0;
+					vocabularyItem < vocabularyItemNumber;
+					vocabularyItem++
+				) {
+					const newOriginal = vocabulary[
+						vocabularyItem
+					].children[0].children[0].value
+						.trim()
+						.replace('(', '\\(')
+						.replace(')', '\\)');
+					const newTranscription =
+						vocabulary[vocabularyItem].children[1].children[0].value.trim();
+
+					let newTranslation =
+						vocabulary[vocabularyItem].children[2].children[0].value.trim();
+					newTranslation = checkIfFirstLetterIsUpperCase(newOriginal)
+						? makeFirstLetterUpperCase(newTranslation)
+						: newTranslation;
+
+					const newType =
+						vocabulary[vocabularyItem].children[3].children[0].value;
+
+					const lastContextObject = newData[newData.length - 1];
+					lastContextObject.vocabulary.push({
+						original: newOriginal,
+						type: newType,
+						transcription: `[${newTranscription.replace(/[\[\]]+/g, '')}]`,
+						translation: newTranslation,
+					});
+				}
+
+				localStorage.setItem('Contexts', newData.length);
+				const newDataJSON = JSON.stringify(newData);
+				localStorage.setItem('newDataJSON', newDataJSON);
+
+				let newDataJS = newDataJSON.replaceAll(`"context"`, 'context');
+				newDataJS = newDataJS.replaceAll(`"vocabulary"`, 'vocabulary');
+				newDataJS = newDataJS.replaceAll(`"original"`, 'original');
+				newDataJS = newDataJS.replaceAll(`"type"`, 'type');
+				newDataJS = newDataJS.replaceAll(`"transcription"`, 'transcription');
+				newDataJS = newDataJS.replaceAll(`"translation"`, 'translation');
+				newDataJS = newDataJS.substring(1, newDataJS.length - 1);
+
+				localStorage.setItem('newDataJS', newDataJS);
+				navigator.clipboard.writeText(newDataJS);
+
+				contextInput.value = '';
+				const vocabularyArray = Array.from(vocabulary);
+				vocabularyArray.forEach((vocabularyItem, index) => {
+					if (index === 0) {
+						clearVocabularyInput(vocabularyItem);
+					} else {
+						vocabularyItem.remove();
+					}
+				});
+
+				displayMessage();
+
+				validateInputs(inputs);
+				checkNewData();
+
+				const firstVocabularyItem = vocabulary[0];
+				const firstVocabularyItemRemovalButton =
+					firstVocabularyItem.children[4];
+				firstVocabularyItemRemovalButton.disabled = true;
+			});
+
+			clearanceButton.addEventListener('click', event => {
+				event.preventDefault();
+
+				prompt.classList.remove('prompt_inactive');
+				overlay.classList.remove('overlay_inactive');
+			});
+
+			confirmationButton.addEventListener('click', () => {
+				localStorage.clear();
+
+				checkNewData();
+				prompt.classList.add('prompt_inactive');
+				overlay.classList.add('overlay_inactive');
+			});
+
+			cancellationButton.addEventListener('click', () => {
+				prompt.classList.add('prompt_inactive');
+				overlay.classList.add('overlay_inactive');
+			});
+		</script>
+	</body>
+</html>
