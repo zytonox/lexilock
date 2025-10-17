@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			content="width=device-width, initial-scale=1.0"
+			name="viewport"
+		/>
+		<title>LexiLock: Learn</title>
+		<link
+			href="../favicon.ico"
+			rel="icon"
+			type="image/x-icon"
+		/>
+		<link
+			href="../styles/reset.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/variables-common.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/variables-learn.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/common.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/learn.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/fonts.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="page">
+		<header class="header">
+			<div class="menu">
+				<ul class="menu__item-container">
+					<li class="menu__item">
+						<button class="menu__button menu__data-toggle">
+							<object
+								class="menu__button-svg"
+								data="../svg/source.svg"
+								type="image/svg+xml"
+							></object>
+
+							<span class="menu__button-text">Source</span>
+						</button>
+
+						<div
+							class="menu__context-menu menu__data-context-menu menu__item_inactive"
+						></div>
+					</li>
+
+					<li class="menu__item">
+						<button class="menu__button menu__hint-toggle">
+							<object
+								class="menu__button-svg"
+								data="../svg/hints.svg"
+								type="image/svg+xml"
+							></object>
+
+							<span class="menu__button-text">Hints</span>
+						</button>
+					</li>
+
+					<li class="menu__item">
+						<button class="menu__button menu__transl-toggle">
+							<object
+								class="menu__button-svg"
+								data="../svg/translate.svg"
+								type="image/svg+xml"
+							></object>
+
+							<span class="menu__button-text">Translate</span>
+						</button>
+					</li>
+
+					<li class="menu__item">
+						<button class="menu__button menu__filter-toggle">
+							<object
+								class="menu__button-svg"
+								data="../svg/filter.svg"
+								type="image/svg+xml"
+							></object>
+
+							<span class="menu__button-text">Filter</span>
+						</button>
+
+						<div
+							class="menu__context-menu menu__filter-context-menu menu__item_inactive"
+						>
+							<p class="menu__button menu__filter-type menu__filter-word">
+								Words
+							</p>
+
+							<p
+								class="menu__button menu__filter-type menu__filter-collocation"
+							>
+								Collocations
+							</p>
+
+							<p class="menu__button menu__filter-type menu__filter-idiom">
+								Idioms
+							</p>
+
+							<p class="menu__button menu__filter-type menu__filter-phrasal">
+								Phrasal Verbs
+							</p>
+						</div>
+					</li>
+
+					<li class="menu__item">
+						<button class="menu__button menu__view-toggle">
+							<object
+								class="menu__button-svg"
+								data="../svg/view.svg"
+								type="image/svg+xml"
+							></object>
+
+							<span class="menu__button-text">View</span>
+						</button>
+					</li>
+				</ul>
+
+				<div class="menu__item menu__view-container menu__item_inactive">
+					<div class="menu__view-count-container">
+						<input
+							aria-label=""
+							class="menu__view-count-input"
+							id="view-input"
+							type="number"
+						/>
+
+						<p class="menu__view-count"></p>
+					</div>
+
+					<div class="menu__view-navigation-container">
+						<button
+							class="menu__button menu__view-navigation-previous"
+						></button>
+
+						<button class="menu__button menu__view-navigation-next"></button>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<div class="wrapper">
+			<div class="container"></div>
+		</div>
+
+		<footer class="footer">
+			<a
+				class="footer__link"
+				href=""
+				>LexiLock</a
+			>
+
+			<p class="footer__year">2025</p>
+		</footer>
+
+		<script src="../scripts/data/data.js"></script>
+		<script src="../scripts/data/news-politics.js"></script>
+		<script src="../scripts/data/misc.js"></script>
+		<script src="../scripts/data/games.js"></script>
+
+		<script src="../scripts/learn.js"></script>
+	</body>
+</html>
