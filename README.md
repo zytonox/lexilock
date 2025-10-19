@@ -14,14 +14,21 @@ Build your vocabulary with LexiLock. Add words in context, get helpful hints wit
    - Select the word type (Word, Collocation, Idiom, or Phrasal Verb) from the "Type" dropdown.
    - Click the "+" button to add more words within the same context.
 4. **Copy Context Data**: Once you've added all words for the context, click the "Copy Context" button. The data will be copied to your clipboard.
-5. **Update "learn.html"**:
-   - Open `learn.html` in a text or code editor.
-   - Locate the `data` array in the JavaScript code.
-   - Paste the copied data at the end of the `data` array. Ensure proper formatting (e.g., within square brackets (`[]`) and separated by commas (`,`)).
-   - Save the file.
-6. **Practice in Browser**:
+5. **Update Vocabulary Data**:
+   - Navigate to the `scripts/data/` folder and open the appropriate category file (e.g., news-politics.js, science.js, films.js).
+   - Paste the copied data at the end of the array in that file.
+   - To create a new category:
+     - Create a new `.js` file in the `scripts/data/` folder.
+     - Add: `allData['Category Name'] = []` (replace with your category name).
+     - Paste your data into the array.
+     - Add `<script src="scripts/data/your-category.js"></script>` to `learn.html`.
+6. **Practice and Explore**:
    - Open `learn.html` in a browser to practice the new words within their context.
-   - Enable Hints: Click the "Hint" button to toggle hints on or off.
+   - Switch Data: Use the data dropdown to change thematic context.
+   - Enable Hints: Click words to reveal translations and transcriptions.
+   - Reverse Practice: Toggle translation direction with the "Translate" button.
+   - Filter Types: Focus on idioms, phrasal verbs, collocations, or words.
+   - Change View: Switch between single and multiple context modes.
    - View Hints: Click on the added words within the context to reveal their associated hints.
 
 ## Note
