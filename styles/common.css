@@ -1,0 +1,89 @@
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: var(--rad);
+	background-color: var(--clr-bg-pg);
+}
+
+::-webkit-scrollbar-thumb {
+	border: 0.1rem solid var(--clr-bg-pg);
+	border-radius: var(--rad-l);
+	background-image: -webkit-linear-gradient(
+		315deg,
+		var(--clr-scrl-thmb) 10%,
+		var(--clr-bg-mn)
+	);
+	box-shadow: 0 5px 7px var(--clr-shdw);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-image: -webkit-linear-gradient(
+		315deg,
+		var(--clr-scrl-thmb-hov) 10%,
+		var(--clr-bg-mn)
+	);
+	box-shadow: 0 5px 14px var(--clr-shdw);
+}
+
+::-webkit-scrollbar-thumb:active {
+	background-image: -webkit-linear-gradient(
+		315deg,
+		var(--clr-scrl-thmb-act),
+		var(--clr-bg-mn)
+	);
+	box-shadow: none;
+}
+
+::-webkit-scrollbar-corner {
+	background-color: var(--clr-bg-pg);
+}
+
+* {
+	font-family: 'Segoe UI', sans-serif;
+}
+
+*::selection {
+	background: var(--clr-bg-hov);
+}
+
+.page {
+	background-color: var(--clr-bg-pg);
+}
+
+.header *,
+.footer *,
+:where(.page:has(.data-form) *) {
+	color: var(--clr-txt);
+	outline: none;
+}
+
+.header *,
+.data-form * {
+	user-select: none;
+}
+
+.wrapper {
+	min-height: 90vh;
+}
+
+.footer {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	margin: 20px 0;
+}
+
+@media screen and (max-width: 650px) {
+	.footer {
+		display: none;
+	}
+}
+
+.footer a {
+	text-decoration: none;
+	pointer-events: none;
+}
