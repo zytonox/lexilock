@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			content="width=device-width, initial-scale=1.0"
+			name="viewport"
+		/>
+		<title>LexiLock: Manage</title>
+		<link
+			href="../favicon.ico"
+			rel="icon"
+			type="image/x-icon"
+		/>
+		<link
+			href="../styles/reset.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/variables-common.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/variables-manage.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/common.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/manage.css"
+			rel="stylesheet"
+		/>
+		<link
+			href="../styles/fonts.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="page">
+		<div class="wrapper">
+			<form class="data-form">
+				<h2 class="data-form__title">LexiLock: Manage</h2>
+
+				<textarea
+					aria-label=""
+					class="data-form__input data-form__input-context"
+					name="context-input"
+				></textarea>
+
+				<div class="data-form__container">
+					<button class="data-form__button data-form__add-vocabulary">+</button>
+
+					<p class="data-form__message"></p>
+				</div>
+
+				<fieldset class="data-form__fieldset">
+					<div class="data-form__vocabulary-item">
+						<label class="data-form__label"
+							>Original
+							<input
+								class="data-form__input data-form__input_origin"
+								name="original-input"
+								type="text"
+						/></label>
+
+						<label class="data-form__label"
+							>Transcription
+							<input
+								class="data-form__input"
+								name="original-transcription"
+								type="text"
+						/></label>
+
+						<label class="data-form__label"
+							>Translation
+							<input
+								class="data-form__input"
+								name="original-translation"
+								type="text"
+						/></label>
+
+						<label class="data-form__label"
+							>Type
+							<select
+								class="data-form__input data-form__input-type"
+								name="original-type"
+							>
+								<option
+									class="data-form__option"
+									value="word"
+								>
+									Word
+								</option>
+
+								<option
+									class="data-form__option"
+									value="collocation"
+								>
+									Collocation
+								</option>
+
+								<option
+									class="data-form__option"
+									value="idiom"
+								>
+									Idiom
+								</option>
+
+								<option
+									class="data-form__option"
+									value="phrasal"
+								>
+									Phrasal Verb
+								</option>
+							</select></label
+						>
+
+						<button
+							class="data-form__button data-form__remove-vocabulary"
+							disabled
+						>
+							-
+						</button>
+					</div>
+				</fieldset>
+
+				<div class="data-form__button-container">
+					<button
+						class="data-form__button data-form__copy-button"
+						disabled
+					>
+						Copy Context
+					</button>
+
+					<button
+						class="data-form__button data-form__clear-button"
+						disabled
+					>
+						Clear Context
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<footer class="footer">
+			<a
+				class="footer__link"
+				href=""
+				>LexiLock</a
+			>
+
+			<p class="footer__year">2025</p>
+		</footer>
+
+		<div class="overlay overlay_inactive"></div>
+
+		<div class="prompt prompt_inactive">
+			<p class="prompt__message">Are you sure?</p>
+
+			<button class="prompt__button">Yes</button>
+
+			<button class="prompt__button">No</button>
+		</div>
+
+		<script src="../scripts/manage.js"></script>
+	</body>
+</html>
