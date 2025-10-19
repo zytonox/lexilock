@@ -14,14 +14,12 @@ Build your vocabulary with LexiLock. Add words in context, get helpful hints wit
    - Select the word type (Word, Collocation, Idiom, or Phrasal Verb) from the "Type" dropdown.
    - Click the "+" button to add more words within the same context.
 4. **Copy Context Data**: Once you've added all words for the context, click the "Copy Context" button. The data will be copied to your clipboard.
-5. **Update Vocabulary Data**:
-   - Navigate to the `scripts/data/` folder and open the appropriate category file (e.g., news-politics.js, science.js, films.js).
-   - Paste the copied data at the end of the array in that file.
-   - To create a new category:
-     - Create a new `.js` file in the `scripts/data/` folder.
-     - Add: `allData['Category Name'] = []` (replace with your category name).
-     - Paste your data into the array.
-     - Add `<script src="scripts/data/your-category.js"></script>` to `learn.html`.
+5. **Add Data via CLI"**:
+   - Navigate to the learn directory.
+   - Run `npm run add-data` in your terminal.
+   - Paste your new JSON data (paste in single line to avoid formatting issues).
+   - Enter a category name like "news/politics", "science", "films", etc.
+   - Your new vocabulary is now ready for practice.
 6. **Practice and Explore**:
    - Open `learn.html` in a browser to practice the new words within their context.
    - Switch Data: Use the data dropdown to change thematic context.
