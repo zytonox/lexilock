@@ -1,0 +1,23 @@
+:root {
+	--wd-pmt: 320px;
+
+	--fnt-sz-s: 20px;
+
+	--brd-dsbl-hov: 1px solid #494949;
+	--brd-dsbl-act: 1px solid #555555;
+
+	--clr-dsbl: #636363;
+	--clr-bg-dsbl-hov: #303030;
+	--clr-bg-dsbl-act: #343434;
+
+	--clr-msg: #589465;
+
+	--clr-bg-pmt-btn: #212121;
+	--clr-bg-pmt-btn-hov: #272727;
+	--clr-bg-pmt-btn-act: #2b2b2b;
+
+	--clr-neg: #ac4747;
+
+	--shdw-l: 0 2px 5px var(--clr-shdw);
+	--shdw-l-act: 0 1px 6px #242527;
+}
