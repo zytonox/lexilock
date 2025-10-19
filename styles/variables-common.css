@@ -1,0 +1,28 @@
+:root {
+	--fnt-sz: 24px;
+
+	--rad: 5px;
+	--rad-l: 10px;
+
+	--brd: 1px solid #414141;
+	--brd-hov: 1px solid #545454;
+	--brd-act: 1px solid #626262;
+
+	--clr-scrl-thmb: #505050;
+	--clr-scrl-thmb-hov: #5e5e5e;
+	--clr-scrl-thmb-act: #6b6b6b;
+
+	--clr-bg-pg: #282a2e;
+
+	--clr-bg-mn: #2e2e2e;
+	--clr-bg-hov: #414141;
+	--clr-bg-act: #494949;
+
+	--clr-txt: #b4b4b4;
+
+	--clr-shdw: #222325;
+
+	--shdw-act: 0 1px 4px #292a2c;
+
+	--shdw-blk: 0 3px 10px var(--clr-shdw);
+}
