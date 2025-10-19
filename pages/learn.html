@@ -70,7 +70,7 @@
 					</li>
 
 					<li class="menu__item">
-						<button class="menu__button menu__transl-toggle">
+						<button class="menu__button menu__translate-toggle">
 							<object
 								class="menu__button-svg"
 								data="../svg/translate.svg"
@@ -165,11 +165,20 @@
 			<p class="footer__year">2025</p>
 		</footer>
 
-		<script src="../scripts/data/data.js"></script>
-		<script src="../scripts/data/news-politics.js"></script>
-		<script src="../scripts/data/misc.js"></script>
-		<script src="../scripts/data/games.js"></script>
+		<script>
+			const isDevelopment =
+				window.location.protocol === 'http:' ||
+				window.location.protocol === 'https:';
 
-		<script src="../scripts/learn.js"></script>
+			if (isDevelopment) {
+				document.write(
+					'<script type="module" src="../scripts/learn.js"><\/script>'
+				);
+			} else {
+				document.write(
+					'<script src="../scripts/bundles/learn.bundle.js"><\/script>'
+				);
+			}
+		</script>
 	</body>
 </html>
