@@ -17,7 +17,15 @@ export const useKeyboardManager = () => {
 					textInputElement => textInputElement === document.activeElement
 				);
 				if (!isTextInputElementFocused) {
-					window.location.href = '../../../pages/learn.html';
+					const isDevelopment =
+						window.location.protocol === 'http:' ||
+						window.location.protocol === 'https:';
+
+					if (isDevelopment) {
+						window.location.href = '../../../pages/learn.html';
+					} else {
+						window.location.href = '../pages/learn.html';
+					}
 				}
 			}
 
