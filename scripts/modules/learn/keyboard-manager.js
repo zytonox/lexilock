@@ -53,7 +53,15 @@ export const useKeyboardManager = (viewManager, hintManager) => {
 
 		document.addEventListener('keydown', function (event) {
 			if (event.shiftKey && event.key === 'S') {
-				window.location.href = '../../../pages/manage.html';
+				const isDevelopment =
+					window.location.protocol === 'http:' ||
+					window.location.protocol === 'https:';
+
+				if (isDevelopment) {
+					window.location.href = '../../../pages/manage.html';
+				} else {
+					window.location.href = '../pages/manage.html';
+				}
 			}
 		});
 	};
