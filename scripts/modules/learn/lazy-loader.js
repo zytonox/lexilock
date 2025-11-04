@@ -3,6 +3,8 @@ import { useState } from './state.js';
 import { useUtilities } from './utilities.js';
 import { useRenderer } from './renderer.js';
 
+let debounceCall = null;
+
 export const useLazyLoader = () => {
 	const { CONFIG } = getConfig();
 	const state = useState();
@@ -18,14 +20,20 @@ export const useLazyLoader = () => {
 		}
 	};
 
-	const debounceCall = debounce(checkIfNewContextsRequired, 100);
+	const removeLazyLoader = () => {
+		if (debounceCall) {
+			document.removeEventListener('scroll', debounceCall);
+			debounceCall = null;
+		}
+	};
 
 	const setupLazyLoaderEventListeners = () => {
+		debounceCall = debounce(checkIfNewContextsRequired, 100);
 		document.addEventListener('scroll', debounceCall);
 	};
 
 	return {
-		debounceCall,
+		removeLazyLoader,
 		setupLazyLoaderEventListeners,
 	};
 };
