@@ -26,35 +26,24 @@ export const useRenderer = () => {
 				state.context.active[state.context.count.processed].ctx;
 
 			for (const currentVocabularyItem of currentVocabulary) {
-				const regularExpression = new RegExp(`(${currentVocabularyItem.orig})`);
-				let HTMLStringSplit = newHTMLString.split(regularExpression);
-				HTMLStringSplit = HTMLStringSplit.map(
-					(currentHTMLSpan, currentHtmlSpanIndex, array) => {
-						const vocabularyItemOriginal = currentVocabularyItem.orig.replace(
-							/\\/g,
-							''
-						);
-						if (
-							currentHTMLSpan === vocabularyItemOriginal &&
-							array.indexOf(currentHTMLSpan) === currentHtmlSpanIndex
-						) {
-							currentHTMLSpan = `<span class="container__context-vocabulary container__context-vocabulary_${
-								currentVocabularyItem.typ
-							} ${isAppended ? 'appended' : ''}" data-orig="${btoa(
-								vocabularyItemOriginal
-							)}" data-trscr="${currentVocabularyItem.trscr}" data-trsl="${
-								currentVocabularyItem.trsl
-							}">${vocabularyItemOriginal}</span>`;
-						}
-						return currentHTMLSpan;
-					}
+				const regularExpression = new RegExp(
+					`\\b${currentVocabularyItem.orig}\\b`
 				);
 
-				newHTMLString = HTMLStringSplit.join('');
-				newParagraphElement.innerHTML = newHTMLString;
-				newParagraphElement.classList.add('container__context');
-				element.container.append(newParagraphElement);
+				newHTMLString = newHTMLString.replace(regularExpression, match => {
+					return `<span class="container__context-vocabulary container__context-vocabulary_${
+						currentVocabularyItem.typ
+					} ${isAppended ? 'appended' : ''}" data-orig="${btoa(
+						match
+					)}" data-trscr="${currentVocabularyItem.trscr}" data-trsl="${
+						currentVocabularyItem.trsl
+					}">${match}</span>`;
+				});
 			}
+
+			newParagraphElement.innerHTML = newHTMLString;
+			newParagraphElement.classList.add('container__context');
+			element.container.append(newParagraphElement);
 
 			if (renderedContextCount === state.context.count.max - 1) {
 				state.context.count.processed++;
