@@ -51,7 +51,7 @@ async function create(newData, targetFile) {
 		} catch {}
 
 		const dataArray = Array.isArray(newData) ? newData : [newData];
-		await fs.writeFile(filePath, JSON.stringify(dataArray, null, 2));
+		await fs.writeFile(filePath, JSON.stringify(dataArray, null, '\t'));
 		console.log(`Created ${fileName}.json with ${dataArray.length} entries`);
 
 		await updateDataLoader(fileName, varName, propertyName);
@@ -60,12 +60,20 @@ async function create(newData, targetFile) {
 	}
 }
 
+function detectIndentation(str) {
+	const firstIndentMatch = str.match(/\n([ \t]+)/);
+	return firstIndentMatch ? firstIndentMatch[1] : '\t';
+}
+
 async function add(newData, targetFile) {
 	try {
 		const fileName = toFileName(targetFile);
 		const filePath = path.join(DATA_DIR, `${fileName}.json`);
 
-		const existingData = JSON.parse(await fs.readFile(filePath, 'utf8'));
+		const existingContent = await fs.readFile(filePath, 'utf8');
+		const existingData = JSON.parse(existingContent);
+
+		const indent = detectIndentation(existingContent);
 
 		if (Array.isArray(newData)) {
 			existingData.push(...newData);
@@ -73,7 +81,7 @@ async function add(newData, targetFile) {
 			existingData.push(newData);
 		}
 
-		await fs.writeFile(filePath, JSON.stringify(existingData, null, 2));
+		await fs.writeFile(filePath, JSON.stringify(existingData, null, indent));
 		console.log(
 			`Added ${
 				Array.isArray(newData) ? newData.length : 1
