@@ -52,7 +52,11 @@ async function create(newData, targetFile) {
 
 		const dataArray = Array.isArray(newData) ? newData : [newData];
 		await fs.writeFile(filePath, JSON.stringify(dataArray, null, '\t'));
-		console.log(`Created ${fileName}.json with ${dataArray.length} entries`);
+		console.log(
+			`Created ${fileName}.json with ${dataArray.length} ${
+				dataArray.length > 1 ? 'entries' : 'entry'
+			}`
+		);
 
 		await updateDataLoader(fileName, varName, propertyName);
 	} catch (error) {
@@ -84,8 +88,10 @@ async function add(newData, targetFile) {
 		await fs.writeFile(filePath, JSON.stringify(existingData, null, indent));
 		console.log(
 			`Added ${
-				Array.isArray(newData) ? newData.length : 1
-			} entry/entries to ${fileName}.json (now ${existingData.length} entries)`
+				Array.isArray(newData) ? `${newData.length} entries` : '1 entry'
+			} to ${fileName}.json (now ${existingData.length} ${
+				existingData.length > 1 ? 'entries' : 'entry'
+			})`
 		);
 	} catch (error) {
 		console.error('Error in add:', error.message);
