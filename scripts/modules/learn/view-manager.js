@@ -12,7 +12,7 @@ export const useViewManager = () => {
 	const state = useState();
 	const { renderContexts } = useRenderer();
 	const { removeHint, toggleHints } = useHintManager();
-	const { debounceCall } = useLazyLoader();
+	const { removeLazyLoader, setupLazyLoaderEventListeners } = useLazyLoader();
 
 	const toggleView = () => {
 		removeHint();
@@ -27,7 +27,7 @@ export const useViewManager = () => {
 		if (!state.toggle.isViewOn) {
 			element.view.button.classList.add('menu__button_active');
 
-			document.removeEventListener('scroll', debounceCall);
+			removeLazyLoader();
 			document.addEventListener('keydown', handleViewKeyDownEvent);
 
 			renderContexts();
@@ -36,7 +36,7 @@ export const useViewManager = () => {
 		} else {
 			element.view.button.classList.remove('menu__button_active');
 
-			document.addEventListener('scroll', debounceCall);
+			setupLazyLoaderEventListeners();
 			document.removeEventListener('keydown', handleViewKeyDownEvent);
 
 			renderContexts();
