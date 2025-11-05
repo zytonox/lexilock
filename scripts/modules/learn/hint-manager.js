@@ -51,14 +51,17 @@ export const useHintManager = () => {
 		let vocabularyElementOriginal = atob(vocabularyElement.dataset.orig);
 
 		if (state.toggle.isTranslated && vocabularyElement.childElementCount) {
+			const vocabularyElementFirstChildOriginal = atob(
+				vocabularyElement.children[0].dataset.orig
+			);
+			const vocabularyElementOriginalSplit = vocabularyElementOriginal.split(
+				vocabularyElementFirstChildOriginal
+			);
+
 			const vocabularyElementOriginalArray = state.vocabulary.original.find(
 				currentOriginalVocabularyItem => {
-					const vocabularyElementOriginalSplit =
-						vocabularyElementOriginal.split(' ');
-					const firstVocabularyElementOriginalItem =
-						vocabularyElementOriginalSplit[0];
 					return currentOriginalVocabularyItem.includes(
-						firstVocabularyElementOriginalItem + ' '
+						vocabularyElementOriginalSplit[0]
 					);
 				}
 			);
