@@ -9,8 +9,8 @@ export const useUIUpdater = () => {
 
 		const newDataLength = localStorage.getItem('Contexts');
 		element.title.innerText = !newDataLength
-			? 'LexiLock: Manage'
-			: 'LexiLock: Manage ' + `(${newDataLength})`;
+			? 'LexiLock: Add'
+			: 'LexiLock: Add ' + `(${newDataLength})`;
 		element.context.clearButton.innerText =
 			newDataLength < 2 ? 'Clear Context' : 'Clear Contexts';
 	};

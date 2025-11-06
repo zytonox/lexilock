@@ -4,7 +4,7 @@ Build your vocabulary with LexiLock. Add words in context, get helpful hints wit
 
 ## How to use
 
-1. **Open "manage.html"**: Open the `manage.html` file in your browser.
+1. **Open "add.html"**: Open the `add.html` file in your browser.
 2. **Enter Context**: Type the sentence or passage containing the new word(s) into the "Context" field.
 3. **Add Word Details**:
    For each new word:

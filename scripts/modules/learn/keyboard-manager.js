@@ -58,9 +58,9 @@ export const useKeyboardManager = (viewManager, hintManager) => {
 					window.location.protocol === 'https:';
 
 				if (isDevelopment) {
-					window.location.href = '../../../pages/manage.html';
+					window.location.href = '../../../pages/add.html';
 				} else {
-					window.location.href = '../pages/manage.html';
+					window.location.href = '../pages/add.html';
 				}
 			}
 		});
