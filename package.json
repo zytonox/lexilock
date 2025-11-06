@@ -4,7 +4,7 @@
 		"add-data": "node scripts/utilities/data-manager.js",
 		"build": "npx webpack",
 		"build:learn": "npx webpack --config-name learn",
-		"build:manage": "npx webpack --config-name manage",
+		"build:add": "npx webpack --config-name add",
 		"build:mobile": "npm run build:learn && node scripts/utilities/build-mobile.js",
 		"build:mobile-only": "node scripts/utilities/build-mobile.js"
 	},

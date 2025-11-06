@@ -13,12 +13,12 @@ const learnConfig = {
 	module: {},
 };
 
-const manageConfig = {
-	name: 'manage',
+const addConfig = {
+	name: 'add',
 	mode: 'production',
-	entry: './scripts/manage.js',
+	entry: './scripts/add.js',
 	output: {
-		filename: 'manage.bundle.js',
+		filename: 'add.bundle.js',
 		path: path.resolve(__dirname, 'scripts/bundles'),
 	},
 	watch: false,
@@ -26,4 +26,4 @@ const manageConfig = {
 	module: {},
 };
 
-module.exports = [learnConfig, manageConfig];
+module.exports = [learnConfig, addConfig];
