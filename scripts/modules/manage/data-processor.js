@@ -67,12 +67,10 @@ export const useDataProcessor = () => {
 				vocabularyItem < vocabularyItemCount;
 				vocabularyItem++
 			) {
-				const currentNewOriginal = element.vocabularyItems[
-					vocabularyItem
-				].children[0].children[0].value
-					.trim()
-					.replace('(', '\\(')
-					.replace(')', '\\)');
+				const currentNewOriginal =
+					element.vocabularyItems[
+						vocabularyItem
+					].children[0].children[0].value.trim();
 				const currentNewTranscription =
 					element.vocabularyItems[
 						vocabularyItem

@@ -26,9 +26,15 @@ export const useRenderer = () => {
 				state.context.active[state.context.count.processed].ctx;
 
 			for (const currentVocabularyItem of currentVocabulary) {
-				const regularExpression = new RegExp(
-					`\\b${currentVocabularyItem.orig}\\b`
+				let originalEscaped = currentVocabularyItem.orig.replace(
+					/[.*+?^${}()|[\]\\]/g,
+					'\\$&'
 				);
+				const hasWordCharacterAtEnd = /\w$/.test(currentVocabularyItem.orig);
+				const pattern = hasWordCharacterAtEnd
+					? `\\b${originalEscaped}\\b`
+					: `\\b${originalEscaped}`;
+				const regularExpression = new RegExp(pattern);
 
 				newHTMLString = newHTMLString.replace(regularExpression, match => {
 					return `<span class="container__context-vocabulary container__context-vocabulary_${
