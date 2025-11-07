@@ -17,27 +17,8 @@ export const useUtilities = () => {
 		};
 	};
 
-	const getScrollbarWidth = () => {
-		const placeholderElementOuter = document.createElement('div');
-		placeholderElementOuter.style.visibility = 'hidden';
-		placeholderElementOuter.style.overflow = 'scroll';
-		placeholderElementOuter.style.msOverflowStyle = 'scrollbar';
-		document.body.appendChild(placeholderElementOuter);
-
-		const placeholderElementInner = document.createElement('div');
-		placeholderElementOuter.appendChild(placeholderElementInner);
-
-		const scrollbarWidth =
-			placeholderElementOuter.offsetWidth - placeholderElementInner.offsetWidth;
-
-		placeholderElementOuter.parentNode.removeChild(placeholderElementOuter);
-
-		return scrollbarWidth;
-	};
-
 	return {
 		isScrollAtBottom,
 		debounce,
-		getScrollbarWidth,
 	};
 };

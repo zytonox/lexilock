@@ -1,11 +1,9 @@
 import { getElements } from './elements.js';
 import { useState } from './state.js';
-import { useUtilities } from './utilities.js';
 
 export const useHintManager = () => {
 	const element = getElements();
 	const state = useState();
-	const { getScrollbarWidth } = useUtilities();
 
 	const toggleHints = () => {
 		if (!state.toggle.isHintOn) {
@@ -32,6 +30,8 @@ export const useHintManager = () => {
 	};
 
 	const addHint = event => {
+		event.stopPropagation();
+
 		removeHint();
 
 		const vocabularyElement = event.target;
@@ -84,16 +84,17 @@ export const useHintManager = () => {
 		newHintElement.classList.add('container__context-hint');
 
 		const containerElementPosition = element.container.getBoundingClientRect();
+		const newHintElementPositionLeft =
+			event.clientX - containerElementPosition.left;
 		newHintElement.style.top = `${
 			event.clientY - containerElementPosition.top
 		}px`;
-		newHintElement.style.left = `${
-			event.clientX - containerElementPosition.left
-		}px`;
+		newHintElement.style.left = `${newHintElementPositionLeft}px`;
 
 		newHintElement.addEventListener('click', event => {
 			event.stopPropagation();
 		});
+
 		newHintElement.append(newHintTranscriptionElement);
 		newHintElement.append(newHintTranslationElement);
 
@@ -115,43 +116,34 @@ export const useHintManager = () => {
 			newHintElement.append(hintTypeElement);
 		}
 
-		const viewportWidth = Math.max(
-			document.documentElement.clientWidth || 0,
-			window.innerWidth || 0
-		);
-		const viewportHeight = Math.max(
-			document.documentElement.clientHeight || 0,
-			window.innerHeight || 0
-		);
-
 		let initialScroll = document.documentElement.scrollTop;
 
 		element.container.append(newHintElement);
 
-		const hintElementPosition = newHintElement.getBoundingClientRect();
-		const hintElementPositionRight = hintElementPosition.right;
-		if (viewportWidth < hintElementPositionRight) {
-			const scrollbarWidth = getScrollbarWidth();
-			newHintElement.style.left = `${
-				hintElementPosition.left -
-				(hintElementPositionRight - viewportWidth) -
-				scrollbarWidth
-			}px`;
-		}
+		const newHintElementPosition = newHintElement.getBoundingClientRect();
+		const newHintElementMaxLeft =
+			containerElementPosition.width - newHintElementPosition.width;
+		if (newHintElementPositionLeft > newHintElementMaxLeft)
+			newHintElement.style.left = `${newHintElementMaxLeft}px`;
 
-		const hintElementPositionBottom = hintElementPosition.bottom;
+		const viewportHeight = Math.max(
+			document.documentElement.clientHeight || 0,
+			window.innerHeight || 0
+		);
+		const newHintElementPositionBottom = newHintElementPosition.bottom;
 		const currentHeaderHeight = element.header.offsetHeight;
-		if (!state.isMobile && viewportHeight < hintElementPositionBottom) {
+		if (!state.isMobile && viewportHeight < newHintElementPositionBottom) {
 			newHintElement.style.top = `${
-				newHintElement.offsetTop - (hintElementPositionBottom - viewportHeight)
+				newHintElement.offsetTop -
+				(newHintElementPositionBottom - viewportHeight)
 			}px`;
 		} else if (
 			state.isMobile &&
-			viewportHeight - currentHeaderHeight < hintElementPositionBottom
+			viewportHeight - currentHeaderHeight < newHintElementPositionBottom
 		) {
 			newHintElement.style.top = `${
 				newHintElement.offsetTop -
-				(hintElementPositionBottom - viewportHeight) -
+				(newHintElementPositionBottom - viewportHeight) -
 				currentHeaderHeight
 			}px`;
 		}
