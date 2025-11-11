@@ -1,7 +1,9 @@
 import { getElements } from './elements.js';
+import { useUtilities } from '../../utilities/browser-utilities.js';
 
 export const useInputValidator = () => {
 	const element = getElements();
+	const { createWordBoundaryRegex } = useUtilities();
 
 	const validateInputs = () => {
 		const inputElements = document.querySelectorAll(
@@ -17,10 +19,15 @@ export const useInputValidator = () => {
 		);
 		const originalInputElementArray = Array.from(originalInputElements);
 		const isOriginalInvalid = originalInputElementArray.find(
-			currentOriginalInputElement =>
-				!element.contextInput.value.includes(
-					currentOriginalInputElement.value.trim()
-				)
+			currentOriginalInputElement => {
+				const currentOriginalInputElementValueTrimmed =
+					currentOriginalInputElement.value.trim();
+				const wordBoundaryRegex = createWordBoundaryRegex(
+					currentOriginalInputElementValueTrimmed
+				);
+
+				return !wordBoundaryRegex.test(element.contextInput.value);
+			}
 		);
 
 		element.context.copyButton.disabled = !!(isInputEmpty || isOriginalInvalid);
