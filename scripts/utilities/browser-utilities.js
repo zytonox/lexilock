@@ -18,13 +18,18 @@ export const useUtilities = () => {
 	};
 
 	const debounce = (func, delay) => {
-		let timeout;
+		let timeoutId;
 
-		return function (...args) {
-			clearTimeout(timeout);
-
-			timeout = setTimeout(() => func.apply(this, args), delay);
+		const executeAfterDelay = function (...args) {
+			clearTimeout(timeoutId);
+			timeoutId = setTimeout(() => func.apply(this, args), delay);
 		};
+
+		executeAfterDelay.cancel = () => {
+			clearTimeout(timeoutId);
+		};
+
+		return executeAfterDelay;
 	};
 
 	return {
