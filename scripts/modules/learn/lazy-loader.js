@@ -1,9 +1,9 @@
 import { getConfig } from './config.js';
 import { useState } from './state.js';
-import { useUtilities } from './utilities.js';
+import { useUtilities } from '../../utilities/browser-utilities.js';
 import { useRenderer } from './renderer.js';
 
-let debounceCall = null;
+let debouncedScrollHandler = null;
 
 export const useLazyLoader = () => {
 	const { CONFIG } = getConfig();
@@ -21,15 +21,16 @@ export const useLazyLoader = () => {
 	};
 
 	const removeLazyLoader = () => {
-		if (debounceCall) {
-			document.removeEventListener('scroll', debounceCall);
-			debounceCall = null;
+		if (debouncedScrollHandler) {
+			document.removeEventListener('scroll', debouncedScrollHandler);
+			debouncedScrollHandler.cancel();
+			debouncedScrollHandler = null;
 		}
 	};
 
 	const setupLazyLoaderEventListeners = () => {
-		debounceCall = debounce(checkIfNewContextsRequired, 100);
-		document.addEventListener('scroll', debounceCall);
+		debouncedScrollHandler = debounce(checkIfNewContextsRequired, 100);
+		document.addEventListener('scroll', debouncedScrollHandler);
 	};
 
 	return {
