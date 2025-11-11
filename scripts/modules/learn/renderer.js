@@ -1,11 +1,13 @@
 import { getElements } from './elements.js';
 import { useState } from './state.js';
+import { useUtilities } from '../../utilities/browser-utilities.js';
 import { useHintManager } from './hint-manager.js';
 import { useTranslationManager } from './translation-manager.js';
 
 export const useRenderer = () => {
 	const element = getElements();
 	const state = useState();
+	const { createWordBoundaryRegex } = useUtilities();
 	const { toggleHints } = useHintManager();
 	const { translateVocabulary } = useTranslationManager();
 
@@ -26,17 +28,10 @@ export const useRenderer = () => {
 				state.context.active[state.context.count.processed].ctx;
 
 			for (const currentVocabularyItem of currentVocabulary) {
-				let originalEscaped = currentVocabularyItem.orig.replace(
-					/[.*+?^${}()|[\]\\]/g,
-					'\\$&'
+				const wordBoundaryRegex = createWordBoundaryRegex(
+					currentVocabularyItem.orig
 				);
-				const hasWordCharacterAtEnd = /\w$/.test(currentVocabularyItem.orig);
-				const pattern = hasWordCharacterAtEnd
-					? `\\b${originalEscaped}\\b`
-					: `\\b${originalEscaped}`;
-				const regularExpression = new RegExp(pattern);
-
-				newHTMLString = newHTMLString.replace(regularExpression, match => {
+				newHTMLString = newHTMLString.replace(wordBoundaryRegex, match => {
 					return `<span class="container__context-vocabulary container__context-vocabulary_${
 						currentVocabularyItem.typ
 					} ${isAppended ? 'appended' : ''}" data-orig="${btoa(
