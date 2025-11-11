@@ -107,9 +107,13 @@ export const useHintManager = () => {
 			hintTypeElement.classList.add('container__context-hint-text');
 
 			const hintTypeSplit = vocabularyElement.classList[1].split('_');
-			hintTypeElement.innerText =
-				hintTypeSplit[hintTypeSplit.length - 1].charAt(0).toUpperCase() +
-				hintTypeSplit[hintTypeSplit.length - 1].slice(1);
+			let hintType = hintTypeSplit[hintTypeSplit.length - 1];
+			if (hintType === 'phrasal') {
+				hintTypeElement.innerText = 'Phrasal Verb';
+			} else {
+				hintTypeElement.innerText =
+					hintType.charAt(0).toUpperCase() + hintType.slice(1);
+			}
 
 			hintTypeElement.style.fontSize = '16px';
 			hintTypeElement.style.color = '#6d6d6d';
