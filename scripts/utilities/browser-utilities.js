@@ -1,4 +1,14 @@
 export const useUtilities = () => {
+	const createWordBoundaryRegex = string => {
+		let stringEscaped = string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+		const hasWordCharacterAtEnd = /\w$/.test(string);
+		const pattern = hasWordCharacterAtEnd
+			? `\\b${stringEscaped}\\b`
+			: `\\b${stringEscaped}`;
+
+		return new RegExp(pattern);
+	};
+
 	const isScrollAtBottom = scrollThreshold => {
 		const documentHeight = document.documentElement.scrollHeight;
 		const windowHeight = window.innerHeight;
@@ -18,6 +28,7 @@ export const useUtilities = () => {
 	};
 
 	return {
+		createWordBoundaryRegex,
 		isScrollAtBottom,
 		debounce,
 	};
