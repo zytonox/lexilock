@@ -39,7 +39,9 @@ export const useTranslationManager = () => {
 						: state.vocabulary.original[currentVocabularyElementIndex][0];
 				} else {
 					if (isTranslationRequired) {
-						state.vocabulary.original[currentVocabularyElementIndex].push(
+						state.vocabulary.original[
+							state.vocabulary.original.length - 1
+						].push(
 							vocabularyItemChildren[vocabularyItemChildren.length - 1]
 								.nodeValue
 						);
