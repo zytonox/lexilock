@@ -51,7 +51,7 @@ async function create(newData, targetFile) {
 		} catch {}
 
 		const dataArray = Array.isArray(newData) ? newData : [newData];
-		await fs.writeFile(filePath, JSON.stringify(dataArray, null, '\t'));
+		await fs.writeFile(filePath, JSON.stringify(dataArray, null, '\t') + '\n');
 		console.log(
 			`Created ${fileName}.json with ${dataArray.length} ${
 				dataArray.length > 1 ? 'entries' : 'entry'
@@ -85,7 +85,10 @@ async function add(newData, targetFile) {
 			existingData.push(newData);
 		}
 
-		await fs.writeFile(filePath, JSON.stringify(existingData, null, indent));
+		await fs.writeFile(
+			filePath,
+			JSON.stringify(existingData, null, indent) + '\n'
+		);
 		console.log(
 			`Added ${
 				Array.isArray(newData) ? `${newData.length} entries` : '1 entry'
